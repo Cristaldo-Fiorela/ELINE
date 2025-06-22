@@ -1,4 +1,4 @@
-package chicuelas.eline;
+package Modelo;
 
 public class Eline {
 
