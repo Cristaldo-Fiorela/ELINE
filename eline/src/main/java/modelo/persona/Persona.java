@@ -1,7 +1,7 @@
 package modelo.persona;
 
 public class Persona {
-    private  String DNI;
+    private  int DNI;
     private  String nombre;
     private  String apellido;
     private  String telefono;
@@ -10,7 +10,7 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(String DNI, String nombre, String apellido, String telefono, String correo) {
+    public Persona(int DNI, String nombre, String apellido, String telefono, String correo) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -18,7 +18,7 @@ public class Persona {
         this.correo = correo;
     }
 
-    public String getDNI() {
+    public int getDNI() {
         return DNI;
     }
 
@@ -38,7 +38,7 @@ public class Persona {
         return correo;
     }
 
-    public void setDNI(String DNI) {
+    public void setDNI(int DNI) {
         this.DNI = DNI;
     }
 
