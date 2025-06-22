@@ -1,6 +1,6 @@
 package modelo.persona;
 
-public abstract class Persona {
+public class Persona {
     protected String DNI;
     protected String nombre;
     protected String apellido;
