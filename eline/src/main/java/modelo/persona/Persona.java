@@ -1,11 +1,11 @@
 package modelo.persona;
 
 public class Persona {
-    protected String DNI;
-    protected String nombre;
-    protected String apellido;
-    protected String telefono;
-    protected String correo;
+    private  String DNI;
+    private  String nombre;
+    private  String apellido;
+    private  String telefono;
+    private  String correo;
 
     public Persona() {
     }
