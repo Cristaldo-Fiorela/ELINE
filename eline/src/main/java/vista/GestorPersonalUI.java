@@ -8,12 +8,12 @@ package vista;
  *
  * @author Fio
  */
-public class gestorPersonal extends javax.swing.JFrame {
+public class GestorPersonalUI extends javax.swing.JFrame {
 
     /**
      * Creates new form gestorPersonal
      */
-    public gestorPersonal() {
+    public GestorPersonalUI() {
         initComponents();
     }
 
