@@ -27,4 +27,11 @@ public class Especialidad {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    @Override
+    public String toString() {
+         return ID_Especialidad + "," +descripcion; //hay que retornar separados con "," asi puede leer bien el archivo
+    }
+    
+    
 }

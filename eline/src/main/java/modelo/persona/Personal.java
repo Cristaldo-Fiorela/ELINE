@@ -19,4 +19,7 @@ public class Personal extends Persona {
     public void setEspecialidad(Especialidad especialidad) {
         this.especialidad = especialidad;
     }
+
+    
+    
 }

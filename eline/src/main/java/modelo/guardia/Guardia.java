@@ -71,4 +71,12 @@ public class Guardia {
     public void setFecha_turno(LocalDate fecha_turno) {
         this.fecha_turno = fecha_turno;
     }
+
+    //aca iria como en la tabla y el txt
+    @Override
+    public String toString() {
+        return  id_guardia + "," + persona + "," + sector + "," + turno + "," + ambulancia + "," + fecha_turno;
+    }
+    
+    
 }
