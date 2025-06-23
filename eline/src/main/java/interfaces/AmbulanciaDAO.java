@@ -1,13 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package interfaces;
 
-/**
- *
- * @author daian
- */
+import java.util.List;
+import modelo.ambulancia.Ambulancia;
+
+
 public interface AmbulanciaDAO {
+     public void guardarAmbulancia(Ambulancia ambulancia);
+    public List<Ambulancia> listarTodos();
     
 }

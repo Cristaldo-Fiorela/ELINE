@@ -6,6 +6,6 @@ import modelo.guardia.Guardia;
 
 
 public interface GuardiaDAO {
-    void guardarGuardia(Guardia guardia);
-    List<Guardia> listarGuardias();
+   public void guardarGuardia(Guardia guardia);
+   public List<Guardia> listarGuardias();
 }

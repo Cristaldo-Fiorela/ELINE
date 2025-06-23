@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
+
 package interfaces;
 
-/**
- *
- * @author daian
- */
+import java.util.List;
+import modelo.guardia.Turno;
+
 public interface TurnoDAO {
-    
+    public void guardarTurno(Turno turno);
+    public List<Turno> listarTodos(); 
 }
