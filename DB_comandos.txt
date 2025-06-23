@@ -1,0 +1,94 @@
+use eline;
+
+create table Especialidad (
+	id_especialidad int primary key identity(1,1),
+	descripcion varchar(50) not null,
+);
+
+create table Persona (
+	DNI int primary key,
+	nombre varchar(50) not null,
+	apellido varchar(50) not null,
+	telefono varchar(50) not null,
+	correo varchar(50),
+);
+
+create table Personal (
+	DNI_persona int,
+	id_especialidad int,
+	primary key (DNI_persona, id_especialidad ),
+	foreign key (DNI_persona) references Persona(DNI),
+	foreign key (id_especialidad) references Especialidad(id_especialidad),
+);
+
+create table Sector (
+	id_sector int primary key identity(1,1),
+	descripcion varchar(50) not null,
+	ubicacion varchar(50) not null,
+);
+
+create table Turno (
+	id_turno int primary key identity(1,1),
+	descripcion varchar(50) not null,
+	hora_inicio int not null,
+	hora_salida int not null,
+);
+
+create table Ambulancia (
+	id_ambulancia int primary key identity(1,1),
+	observacion varchar(50),
+	matricula varchar(20) not null,
+);
+
+create table Guardia (
+	id_guardia int primary key identity(1,1),
+	DNI_persona int,
+	id_turno int,
+	id_sector int,
+	id_ambulancia int,
+	fecha_turno date not null,
+	foreign key (DNI_persona) references Persona(DNI),
+	foreign key (id_turno) references Turno(id_turno),
+	foreign key (id_sector) references Sector(id_sector),
+	foreign key (id_ambulancia) references Ambulancia(id_ambulancia),
+
+);
+
+insert into Turno (descripcion, hora_inicio, hora_salida)
+values 
+  ('Mañana', 6, 14),
+  ('Tarde', 14, 22),
+  ('Noche', 22, 6);
+
+
+insert into Ambulancia (observacion, matricula)
+values
+  ('Ambulancia equipada para UTI', 'ABC123'),
+  ('Ambulancia con desfibrilador', 'DEF456'),
+  ('Ambulancia estándar', 'GHI789');
+
+insert into Sector (descripcion, ubicacion)
+values
+  ('Zona Norte', 'Av. Libertador y Gral. Paz'),
+  ('Zona Centro', 'Obelisco y alrededores'),
+  ('Zona Sur', 'Av. Hipólito Yrigoyen y Camino Negro');
+
+
+insert into Especialidad (descripcion)
+values
+  ('Chofer'),
+  ('Enfermero'),
+  ('Paramédico');
+
+insert into Persona (DNI, nombre, apellido, telefono, correo)
+values
+  (12345678, 'María', 'Gómez', '1123456789', 'maria.gomez@email.com'),
+  (23456789, 'Luis', 'Pérez', '1134567890', 'luis.perez@email.com'),
+  (34567890, 'Carla', 'López', '1145678901', 'carla.lopez@email.com');
+
+
+insert into Personal (DNI_persona, id_especialidad)
+values
+  (12345678, 1),
+  (23456789, 2),
+  (34567890, 3);
