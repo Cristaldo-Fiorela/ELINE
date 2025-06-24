@@ -1,22 +1,11 @@
 
 package dao.impl;
 
-import interfaces.EspecialidadDAO;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import modelo.persona.Especialidad;
-
-
-public class EspecialidadDAOImpl implements EspecialidadDAO {
+public class EspecialidadDAOImpl  {
       //ponemos el nombre al archivo
     private final String archivo = "especialidad.txt";
 
+    /*
     @Override
     public void guardarEspecialidad(Especialidad especialidad) {
       //generamos un id autoincremental
@@ -76,4 +65,5 @@ public class EspecialidadDAOImpl implements EspecialidadDAO {
         }
         return maxId + 1;
     }
+    */
 }

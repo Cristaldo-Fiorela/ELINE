@@ -2,3 +2,4 @@
 2,Medico
 3,Chofer
 4,Paramedico
+5,Auxiliar

@@ -1,22 +1,10 @@
 package dao.impl;
 
-import interfaces.PersonalDAO;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import modelo.persona.Especialidad;
-import modelo.persona.Personal;
-
-
-public class PersonalDAOImpl implements PersonalDAO{
+public class PersonalDAOImpl {
     //ponemos el nombre al archivo
     private final String archivo = "personal.txt";
 
+    /*
     @Override
     public void guardarPersonal(Personal personal) {
      try (FileWriter fw = new FileWriter(archivo, true);
@@ -65,6 +53,5 @@ public class PersonalDAOImpl implements PersonalDAO{
         return listaPersonal;
     }
     
-    
-    
+    */
 }

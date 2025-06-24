@@ -9,10 +9,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.persona.Especialidad;
 
 /**
  *
@@ -28,7 +26,7 @@ public class GestorPersonalUI extends javax.swing.JFrame {
     public GestorPersonalUI() {
         initComponents();
         listarEspecialidades();//listar al iniciar
-        listarEspecialidadesEnCombo("especialidad.txt");
+        //listarEspecialidadesEnCombo("especialidad.txt");
     }
 
     /**
@@ -679,8 +677,8 @@ public class GestorPersonalUI extends javax.swing.JFrame {
             return;
         }
          try {
-            especialidadController.guardarEspecialidad(nombre);
-            JOptionPane.showMessageDialog(this, "Especialidad agregada correctamente."); // Mensaje de éxito
+            // especialidadController.guardarEspecialidad(nombre);
+            //JOptionPane.showMessageDialog(this, "Especialidad agregada correctamente."); // Mensaje de éxito
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al guardar la especialidad: " + e.getMessage());
         }
@@ -697,13 +695,14 @@ public class GestorPersonalUI extends javax.swing.JFrame {
     private void listarEspecialidades(){ //listar especialidades en la tabla 
         String[] columnas = {"ID","Especialidad"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
-
+        
+        /*
         List<Especialidad> especialidades = especialidadController.listarTodos();
         for (Especialidad esp : especialidades) {
             Object[] fila = {esp.getID_Especialidad(),esp.getDescripcion()};
             modelo.addRow(fila);
         }
-
+        */
         jTable1.setModel(modelo); 
     }
     

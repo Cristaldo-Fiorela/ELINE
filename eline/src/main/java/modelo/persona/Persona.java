@@ -5,17 +5,21 @@ public class Persona {
     private  String nombre;
     private  String apellido;
     private  String telefono;
-    private  String correo;
+    private  String correo;    
+    private int ID_Especialidad;
+    private String descripcion;
 
     public Persona() {
     }
 
-    public Persona(int DNI, String nombre, String apellido, String telefono, String correo) {
+    public Persona(int DNI, String nombre, String apellido, String telefono, String correo, int ID_Especialidad, String descripcion) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.correo = correo;
+        this.ID_Especialidad = ID_Especialidad;
+        this.descripcion = descripcion;
     }
 
     public int getDNI() {
@@ -38,6 +42,14 @@ public class Persona {
         return correo;
     }
 
+    public int getID_Especialidad() {
+        return ID_Especialidad;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
     public void setDNI(int DNI) {
         this.DNI = DNI;
     }
@@ -58,10 +70,20 @@ public class Persona {
         this.correo = correo;
     }
 
+    public void setID_Especialidad(int ID_Especialidad) {
+        this.ID_Especialidad = ID_Especialidad;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+   
+    /*
     @Override
     public String toString() {
         return  DNI + "," + nombre + "," + apellido + "," + telefono + "," + correo;
     }
     
-    
+    */
 }
