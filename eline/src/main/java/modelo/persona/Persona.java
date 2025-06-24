@@ -1,5 +1,16 @@
 package modelo.persona;
 
+/*
+    PERSONA Y ESPECILIDAD DEBEN:
+    C - vamos a poder crear
+    R - vamos a poder leer datos
+    U - NO vamos a poder
+    D - vamos a poder borrar por ID
+
+    controllador borrar tiene que recibir el nombre del archivo o tipo que debe borrar y id
+    el select de especialidad debe de actualizarse cuando se cree una nueva especialidad.
+*/
+
 public class Persona {
     private  int DNI;
     private  String nombre;

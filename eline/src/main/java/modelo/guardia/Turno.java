@@ -1,5 +1,15 @@
 package modelo.guardia;
 
+/*
+
+    tipo de dato emmet
+    tener un txt con los datos cargados
+    solo imprimir turno con datos emmet
+    no va a tener: CRUD
+    solo se va a poder LEER (read)
+    nada de setter, solo getter
+*/
+
 public class Turno {
     private int id_turno;
     private String descripcion_turno;
