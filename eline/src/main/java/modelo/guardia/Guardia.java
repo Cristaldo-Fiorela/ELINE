@@ -14,10 +14,11 @@ import java.time.LocalDate;
 
 public class Guardia {
     private int id_guardia;
-    private int id_ambulancia;    
-    private int id_sector;
-    private LocalDate fecha;
+    private int id_persona;  
     private int id_turno;
+    private String descripcionSector;
+    
+    private LocalDate fecha;
 
 
     public Guardia() {
