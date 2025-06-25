@@ -76,8 +76,8 @@ public class GestorPersonalUI extends javax.swing.JFrame {
         tbEspecialidad = new javax.swing.JTable();
         jPanel12 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        txtIDEspecialidad = new javax.swing.JTextField();
+        btnBorrarEspecialidad = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -355,7 +355,12 @@ public class GestorPersonalUI extends javax.swing.JFrame {
 
         jLabel14.setText("ID:");
 
-        jButton3.setText("BORRAR");
+        btnBorrarEspecialidad.setText("BORRAR");
+        btnBorrarEspecialidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarEspecialidadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -364,11 +369,11 @@ public class GestorPersonalUI extends javax.swing.JFrame {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBorrarEspecialidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)))
+                        .addComponent(txtIDEspecialidad, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
@@ -377,9 +382,9 @@ public class GestorPersonalUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIDEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(btnBorrarEspecialidad)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -751,7 +756,7 @@ public class GestorPersonalUI extends javax.swing.JFrame {
         }
         
         txtNuevaEspecilidad.setText("");
-        //listarEspecialidades();
+        listarEspecialidades();
      
     }//GEN-LAST:event_btnGuardarEspecialidadActionPerformed
 
@@ -762,6 +767,18 @@ public class GestorPersonalUI extends javax.swing.JFrame {
     private void comboTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTurnoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboTurnoActionPerformed
+
+    private void btnBorrarEspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarEspecialidadActionPerformed
+        // TODO add your handling code here:
+        int ID =  Integer.parseInt(txtIDEspecialidad.getText());
+        try {
+            controlador.eliminarElemento(DBManager.ESPECIALIDADES_FILE, ID);
+            JOptionPane.showMessageDialog(this, "Especialidad eliminadad correctamente."); // Mensaje de éxito
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al eliminar la especialidad: " + e.getMessage());
+        }
+        listarEspecialidades();
+    }//GEN-LAST:event_btnBorrarEspecialidadActionPerformed
 
     private void listarEspecialidades(){ //listar especialidades en la tabla 
         String[] columnas = {"ID","Especialidad"};
@@ -835,6 +852,7 @@ public class GestorPersonalUI extends javax.swing.JFrame {
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBorrarEspecialidad;
     private javax.swing.JButton btnGuardarEspecialidad;
     private javax.swing.JButton btnGuardarGuardia;
     private java.awt.Choice choice2;
@@ -842,7 +860,6 @@ public class GestorPersonalUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboTurno;
     private com.toedter.calendar.JDateChooser formGuardiaFecha;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -896,9 +913,9 @@ public class GestorPersonalUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTable tbEspecialidad;
+    private javax.swing.JTextField txtIDEspecialidad;
     private javax.swing.JTextField txtNuevaEspecilidad;
     // End of variables declaration//GEN-END:variables
 }

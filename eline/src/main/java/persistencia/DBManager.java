@@ -78,5 +78,16 @@ public class DBManager {
             System.err.println("Error al escribir en el archivo: " + e.getMessage());
         }
     }
+    
+    public void escribirTodoArchivo(String ruta_archivo, List<String> lineas) {
+        // escribir el txt linea por linea
+        try (PrintWriter writer = new PrintWriter(new FileWriter(getRutaCompleta(ruta_archivo)))) {
+            for (String linea : lineas) {
+                writer.println(linea);
+            }
+        } catch (Exception e) {
+            System.out.println("Error en escribirTodoArchivo: " + e.getMessage());
+        }
+    }
 
 }
