@@ -54,4 +54,10 @@ public class Turno {
     public void setHora_salida(int hora_salida) {
         this.hora_salida = hora_salida;
     }
+
+    @Override
+    public String toString() {
+        String tipoDescriptivo = tipo_turno.getDescripcion().replace("Turno ", "");
+        return tipoDescriptivo + " (" + hora_inicio + " a " + hora_salida + " hrs)";
+    }
 }

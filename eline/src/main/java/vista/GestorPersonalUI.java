@@ -9,8 +9,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.guardia.TipoTurno;
+import modelo.guardia.Turno;
+import persistencia.DBManager;
 
 /**
  *
@@ -26,6 +30,7 @@ public class GestorPersonalUI extends javax.swing.JFrame {
     public GestorPersonalUI() {
         initComponents();
         listarEspecialidades();//listar al iniciar
+        cargarTurnosDB();
         //listarEspecialidadesEnCombo("especialidad.txt");
     }
 
@@ -81,7 +86,6 @@ public class GestorPersonalUI extends javax.swing.JFrame {
         choice2 = new java.awt.Choice();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        choice3 = new java.awt.Choice();
         jPanel14 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
@@ -92,6 +96,7 @@ public class GestorPersonalUI extends javax.swing.JFrame {
         formGuardiaFecha = new com.toedter.calendar.JDateChooser();
         jLabel20 = new javax.swing.JLabel();
         btnGuardarGuardia = new javax.swing.JButton();
+        comboTurno = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
@@ -485,6 +490,13 @@ public class GestorPersonalUI extends javax.swing.JFrame {
             }
         });
 
+        comboTurno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboTurno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTurnoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -492,12 +504,17 @@ public class GestorPersonalUI extends javax.swing.JFrame {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel6)
+                            .addComponent(btnGuardarGuardia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(10, 10, 10))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(formGuardiaFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(choice2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(choice3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(choice4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel13Layout.createSequentialGroup()
                                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -506,14 +523,9 @@ public class GestorPersonalUI extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addGap(0, 57, Short.MAX_VALUE)
-                                .addComponent(jLabel16)))
-                        .addContainerGap())
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabel6)
-                            .addComponent(btnGuardarGuardia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(10, 10, 10))))
+                                .addComponent(jLabel16))
+                            .addComponent(comboTurno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,8 +539,8 @@ public class GestorPersonalUI extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(choice3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
+                .addComponent(comboTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(choice4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -748,6 +760,10 @@ public class GestorPersonalUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void comboTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTurnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboTurnoActionPerformed
+
     private void listarEspecialidades(){ //listar especialidades en la tabla 
         String[] columnas = {"ID","Especialidad"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
@@ -774,12 +790,66 @@ public class GestorPersonalUI extends javax.swing.JFrame {
         }  
     }
     
+    public void cargarTurnosDB() {
+        try {
+            DBManager DB = DBManager.getInstancia();
+            String rutaArchivo = DB.getRutaCompleta(DBManager.TURNOS_FILE);
+            
+            // limpieza antes de cargar
+            comboTurno.removeAllItems();
+            
+            if(DB.existeArchivo(DBManager.TURNOS_FILE)) {
+                List<String> lineas = DB.leerTodasLinesArchivo(DBManager.TURNOS_FILE);
+                for (String linea : lineas) {
+                    System.out.println(linea);
+                   Turno turno = parsearLineaTurno(linea);
+                    // si hay algo en la linea
+                    if (turno != null) {
+                        comboTurno.addItem(turno.toString());
+                    }   
+                }
+            } else {
+                comboTurno.addItem("Data no encontrada/existente.");
+                System.out.println("El archivo " + DBManager.TURNOS_FILE + " no existe");
+            }
+        } catch (Exception e) {
+            System.out.println("error al leer archivo"); 
+            comboTurno.addItem("Error al cargar turnos");
+        }
+    }
+    
+    private void actualizarComboTurnos() {
+        cargarTurnosDB();
+    }
+        
+    private Turno parsearLineaTurno(String linea) {
+        try {
+            String[] partes = linea.split(",");
+
+            if (partes.length >= 4) {
+                int idTurno = Integer.parseInt(partes[0].trim());
+                String tipoTurnoStr = partes[1].trim();
+                int horaInicio = Integer.parseInt(partes[2].trim());
+                int horaSalida = Integer.parseInt(partes[3].trim());
+
+                // Convertir string a enum TipoTurno
+                TipoTurno tipoTurno = TipoTurno.valueOf(tipoTurnoStr.toUpperCase());
+
+                return new Turno(idTurno, tipoTurno, horaInicio, horaSalida);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al parsear turno: " + linea + " - " + e.getMessage());
+        }
+        return null;
+    }
+    
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardarGuardia;
     private java.awt.Choice choice2;
-    private java.awt.Choice choice3;
     private java.awt.Choice choice4;
+    private javax.swing.JComboBox<String> comboTurno;
     private com.toedter.calendar.JDateChooser formGuardiaFecha;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

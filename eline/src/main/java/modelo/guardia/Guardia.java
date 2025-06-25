@@ -17,47 +17,18 @@ public class Guardia {
     private int id_ambulancia;    
     private int id_sector;
     private LocalDate fecha;
-    private Turno turno;
+    private int id_turno;
+
 
     public Guardia() {
     }
 
-    
-    /*
-    //aca iria como en la tabla y el txt
-    @Override
-    public String toString() {
-        return  id_guardia + "," + persona + "," + sector + "," + turno + "," + ambulancia + "," + fecha_turno;
-    }
-    
-    */
-
-    public Guardia(int id_guardia, int id_ambulancia, int id_sector, LocalDate fecha, Turno turno) {
+    public Guardia(int id_guardia, int id_ambulancia, int id_sector, LocalDate fecha, int id_turno) {
         this.id_guardia = id_guardia;
         this.id_ambulancia = id_ambulancia;
         this.id_sector = id_sector;
         this.fecha = fecha;
-        this.turno = turno;
-    }
-
-    public int getId_guardia() {
-        return id_guardia;
-    }
-
-    public int getId_ambulancia() {
-        return id_ambulancia;
-    }
-
-    public int getId_sector() {
-        return id_sector;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public Turno getTurno() {
-        return turno;
+        this.id_turno = id_turno;
     }
 
     public void setId_guardia(int id_guardia) {
@@ -76,10 +47,40 @@ public class Guardia {
         this.fecha = fecha;
     }
 
-    public void setTurno(Turno turno) {
-        this.turno = turno;
+    public void setId_turno(int id_turno) {
+        this.id_turno = id_turno;
     }
 
-   
+    
+    
+    /*
+    //aca iria como en la tabla y el txt
+    @Override
+    public String toString() {
+        return  id_guardia + "," + persona + "," + sector + "," + turno + "," + ambulancia + "," + fecha_turno;
+    }
+    
+    */
 
+    public int getId_guardia() {
+        return id_guardia;
+    }
+
+    public int getId_ambulancia() {
+        return id_ambulancia;
+    }
+
+    public int getId_sector() {
+        return id_sector;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public int getId_turno() {
+        return id_turno;
+    }
+
+ 
 }

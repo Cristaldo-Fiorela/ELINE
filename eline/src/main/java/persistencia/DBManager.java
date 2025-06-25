@@ -3,6 +3,8 @@ package persistencia;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
     Utilizacion de patron singleton para una instancia unica de DB y dar acceso global del mismo a todo el proyecto.
@@ -51,5 +53,16 @@ public class DBManager {
     
     public boolean existeArchivo(String nombre_archivo) {
         return Files.exists(Paths.get(getRutaCompleta(nombre_archivo)));
+    }
+    
+    public List<String> leerTodasLinesArchivo(String nombre_archivo) {
+        try {
+            return Files.readAllLines(Paths.get(getRutaCompleta(nombre_archivo)));
+        } catch (Exception e) {
+            System.out.println(RUTA_RAIZ + nombre_archivo + "soy de leer todas las lineas");
+            System.err.println("Error al leer archivo: " + e.getMessage());
+            // Devuelve lista vacía en caso de error
+            return new ArrayList<>(); 
+        }
     }
 }
