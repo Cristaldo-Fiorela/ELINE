@@ -5,6 +5,8 @@
 package vista;
 
 import controller.GestorController;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -20,6 +22,7 @@ import persistencia.DBManager;
 public class GestorPersonalUI extends javax.swing.JFrame {
     
     GestorController controlador = new GestorController();
+   
 
     /**
      * Creates new form gestorPersonal
@@ -27,9 +30,12 @@ public class GestorPersonalUI extends javax.swing.JFrame {
     public GestorPersonalUI() {
         initComponents();
         listarEspecialidades();//listar al iniciar
+        listarGuardias();
         cargarTurnosDB();
         cargarEspecialidadesDBCombo();
-        //listarEspecialidadesEnCombo("especialidad.txt");
+        cargarPersonalDBCombo();
+        cargarSectorDBCombo();
+     
     }
 
     /**
@@ -81,26 +87,21 @@ public class GestorPersonalUI extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        choice2 = new java.awt.Choice();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jPanel14 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        choice4 = new java.awt.Choice();
         formGuardiaFecha = new com.toedter.calendar.JDateChooser();
         jLabel20 = new javax.swing.JLabel();
         btnGuardarGuardia = new javax.swing.JButton();
         comboTurno = new javax.swing.JComboBox<>();
+        comboPersonal = new javax.swing.JComboBox<>();
+        comboSector = new javax.swing.JComboBox<>();
+        jLabel19 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tbGuardias = new javax.swing.JTable();
         jPanel18 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -452,44 +453,6 @@ public class GestorPersonalUI extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel17.setText("Turno:");
 
-        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sector", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
-
-        jLabel15.setText("Descripcion:");
-
-        jLabel18.setText("Ubicacion:");
-
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel18))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField9)
-                    .addComponent(jTextField7))
-                .addContainerGap())
-        );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel19.setText("Ambulancia:");
-
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel20.setText("Fecha:");
 
@@ -507,6 +470,11 @@ public class GestorPersonalUI extends javax.swing.JFrame {
             }
         });
 
+        comboSector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel19.setText("Sector:");
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -522,20 +490,20 @@ public class GestorPersonalUI extends javax.swing.JFrame {
                         .addGap(10, 10, 10))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(comboSector, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboPersonal, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(formGuardiaFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(choice2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(choice4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel13Layout.createSequentialGroup()
-                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jLabel17)
+                                .addGap(0, 341, Short.MAX_VALUE))
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addGap(0, 57, Short.MAX_VALUE)
                                 .addComponent(jLabel16))
                             .addComponent(comboTurno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -543,24 +511,22 @@ public class GestorPersonalUI extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(choice2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel16)
                 .addGap(23, 23, 23)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(choice4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(comboSector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88)
                 .addComponent(jLabel20)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formGuardiaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(formGuardiaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
                 .addComponent(btnGuardarGuardia)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -574,7 +540,7 @@ public class GestorPersonalUI extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(444, Short.MAX_VALUE))
+                .addContainerGap(461, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -608,7 +574,7 @@ public class GestorPersonalUI extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel21.setText("Registro de guardias");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbGuardias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -619,7 +585,7 @@ public class GestorPersonalUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tbGuardias);
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -737,12 +703,32 @@ public class GestorPersonalUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarGuardiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarGuardiaActionPerformed
-        // TODO add your handling code here:
+
         
         // formateo de fecha para guardar en el TXT
-        Date mFecha = formGuardiaFecha.getDate(); // obtiene fecha actual del sistema
-        long fecha = mFecha.getTime(); // toma la parte del tiempo (hora) de la fecha y la convierte a long (timestamp)
-        java.sql.Date fecha_sql = new java.sql.Date(fecha); // fecha formateada correctamente para DB
+         //Date mFecha = formGuardiaFecha.getDate(); // obtiene fecha actual del sistema
+       // long fecha = mFecha.getTime(); // toma la parte del tiempo (hora) de la fecha y la convierte a long (timestamp)
+       // java.sql.Date fecha_sql = new java.sql.Date(fecha); // fecha formateada correctamente para DB
+        
+        try {
+            // Formateo de fecha desde JDateChooser
+            Date mFecha = formGuardiaFecha.getDate();
+            LocalDate fech = mFecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            // Obtener selecciones del combo
+            String personalSeleccionado = (String) comboPersonal.getSelectedItem();
+            String turnoSeleccionado = (String) comboTurno.getSelectedItem();
+            String sectorSeleccionado = (String) comboSector.getSelectedItem();
+
+            // Llamar al controlador
+            controlador.guardarNuevaGuardia(personalSeleccionado, turnoSeleccionado, sectorSeleccionado, fech);
+
+            JOptionPane.showMessageDialog(this, "Guardia guardada con éxito.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar la guardia:\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+      
         
     }//GEN-LAST:event_btnGuardarGuardiaActionPerformed
 
@@ -819,6 +805,12 @@ public class GestorPersonalUI extends javax.swing.JFrame {
         String[] columnas = {"ID","Especialidad"};
         controlador.listarDatosTabla(tbEspecialidad, columnas, DBManager.ESPECIALIDADES_FILE);
     }
+    
+    private void listarGuardias(){ //listar guardias en la tabla 
+        String[] columnas = {"ID","Personal","Turno","Sector","Fecha"};
+        controlador.listarDatosTabla(tbGuardias, columnas, DBManager.GUARDIAS_FILE);
+    }
+    
 
     
     public void cargarEspecialidadesDBCombo() {
@@ -847,6 +839,66 @@ public class GestorPersonalUI extends javax.swing.JFrame {
             comboEspecialidadPersonal.addItem("Error al cargar turnos");
         }
     }
+    
+    public void cargarPersonalDBCombo() {
+         try {
+            DBManager DB = DBManager.getInstancia();
+            String ruta = DBManager.PERSONAL_FILE;
+            
+            // limpieza antes de cargar
+            comboPersonal.removeAllItems();
+            
+            if(DB.existeArchivo(ruta)) {
+                List<String> lineas = DB.leerTodasLinesArchivo(ruta);
+                for (String linea : lineas) {
+                    // si hay algo en la linea
+                    if (linea != null && !linea.trim().isEmpty()) {
+                        String[] partes = linea.split(",");
+                       String display = partes[1] + " " + partes[2] + " (" + partes[0] + ")";
+                       comboPersonal.addItem(display);
+                        
+                    }   
+                }
+            } else {
+                comboPersonal.addItem("Data no encontrada/existente.");
+                System.out.println("El archivo " + ruta + " no existe");
+            }
+        } catch (Exception e) {
+            System.out.println("error al leer archivo"); 
+            comboPersonal.addItem("Error al cargar ");
+        }
+        
+    }
+    
+     public void cargarSectorDBCombo() {
+         try {
+            DBManager DB = DBManager.getInstancia();
+            String ruta = DBManager.SECTOR_FILE;
+            
+            // limpieza antes de cargar
+            comboSector.removeAllItems();
+            
+            if(DB.existeArchivo(ruta)) {
+                List<String> lineas = DB.leerTodasLinesArchivo(ruta);
+                for (String linea : lineas) {
+                    // si hay algo en la linea
+                    if (linea != null && !linea.trim().isEmpty()) {     
+                       comboSector.addItem(linea);
+                        
+                    }   
+                }
+            } else {
+                comboSector.addItem("Data no encontrada/existente.");
+                System.out.println("El archivo " + ruta + " no existe");
+            }
+        } catch (Exception e) {
+            System.out.println("error al leer archivo"); 
+            comboSector.addItem("Error al cargar ");
+        }
+        
+    }
+    
+
     
     public void cargarTurnosDB() {
         try {
@@ -902,9 +954,9 @@ public class GestorPersonalUI extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardarEspecialidad;
     private javax.swing.JButton btnGuardarGuardia;
     private javax.swing.JButton btnGuardarPersonal;
-    private java.awt.Choice choice2;
-    private java.awt.Choice choice4;
     private javax.swing.JComboBox<String> comboEspecialidadPersonal;
+    private javax.swing.JComboBox<String> comboPersonal;
+    private javax.swing.JComboBox<String> comboSector;
     private javax.swing.JComboBox<String> comboTurno;
     private com.toedter.calendar.JDateChooser formGuardiaFecha;
     private javax.swing.JButton jButton4;
@@ -914,10 +966,8 @@ public class GestorPersonalUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -935,7 +985,6 @@ public class GestorPersonalUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
@@ -951,11 +1000,9 @@ public class GestorPersonalUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JTable tbEspecialidad;
+    private javax.swing.JTable tbGuardias;
     private javax.swing.JTextField txtApellidoPersonal;
     private javax.swing.JTextField txtCorreoPersonal;
     private javax.swing.JTextField txtDNIpersonal;

@@ -19,6 +19,8 @@ public class DBManager {
     public static final String TURNOS_FILE = "turnos.txt";    
     public static final String ESPECIALIDADES_FILE = "especialidades.txt";
     public static final String PERSONAL_FILE = "personal.txt";
+    public static final String GUARDIAS_FILE = "guardias.txt";
+    public static final String SECTOR_FILE = "sectores.txt";
 
     // instancia singleton!!
     private static DBManager instancia;

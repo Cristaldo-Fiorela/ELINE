@@ -14,21 +14,19 @@ import java.time.LocalDate;
 
 public class Guardia {
     private int id_guardia;
-    private int id_persona;  
+    private String persona;  
     private String turno;
-    private String descripcionSector;
-    private String ubicacionSector;  
+    private String sector;
     private LocalDate fecha;
 
     public Guardia() {
     }
 
-    public Guardia(int id_guardia, int id_persona, int id_turno, String descripcionSector, String ubicacionSector, LocalDate fecha) {
+    public Guardia(int id_guardia, String persona, String turno, String sector, LocalDate fecha) {
         this.id_guardia = id_guardia;
-        this.id_persona = id_persona;
+        this.persona = persona;
         this.turno = turno;
-        this.descripcionSector = descripcionSector;
-        this.ubicacionSector = ubicacionSector;
+        this.sector = sector;
         this.fecha = fecha;
     }
 
@@ -40,36 +38,28 @@ public class Guardia {
         this.id_guardia = id_guardia;
     }
 
-    public int getId_persona() {
-        return id_persona;
+    public String getPersona() {
+        return persona;
     }
 
-    public void setId_persona(int id_persona) {
-        this.id_persona = id_persona;
+    public void setPersona(String persona) {
+        this.persona = persona;
     }
 
-    public String getId_turno() {
+    public String getTurno() {
         return turno;
     }
 
-    public void setId_turno(int id_turno) {
+    public void setTurno(String turno) {
         this.turno = turno;
     }
 
-    public String getDescripcionSector() {
-        return descripcionSector;
+    public String getSector() {
+        return sector;
     }
 
-    public void setDescripcionSector(String descripcionSector) {
-        this.descripcionSector = descripcionSector;
-    }
-
-    public String getUbicacionSector() {
-        return ubicacionSector;
-    }
-
-    public void setUbicacionSector(String ubicacionSector) {
-        this.ubicacionSector = ubicacionSector;
+    public void setSector(String sector) {
+        this.sector = sector;
     }
 
     public LocalDate getFecha() {
@@ -80,9 +70,11 @@ public class Guardia {
         this.fecha = fecha;
     }
 
+  
+
     @Override
     public String toString() {
-        return  id_guardia + "," + id_persona + "," + turno + "," + descripcionSector + "," + ubicacionSector + "," + fecha;
+        return  id_guardia + "," + persona + "," + turno + "," + sector + "," + fecha;
     }
 
 

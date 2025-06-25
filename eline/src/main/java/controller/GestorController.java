@@ -1,10 +1,12 @@
 
 package controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import modelo.guardia.Guardia;
 import modelo.persona.Especialidad;
 import modelo.persona.Persona;
 import persistencia.DBManager;
@@ -33,6 +35,22 @@ public class GestorController {
         String rutaDB = DBManager.PERSONAL_FILE;
         Persona nuevaPersona = new Persona(DNI, nombre, apellido, telefono, correo, especialidad);        
         db.agregarLineaAlFinal(rutaDB, nuevaPersona);
+    }
+    
+       public void guardarNuevaGuardia(String personal,String turno,String sector,LocalDate fecha) { 
+        String rutaDB = DBManager.GUARDIAS_FILE;
+        int ultimoID = encontrarUltimoIdTxt(rutaDB);
+        Guardia nuevaGuardia ;
+        
+        // si se encontro
+        if(ultimoID != -1) {
+            //se crea guardia
+            nuevaGuardia = new Guardia(ultimoID + 1,personal, turno,sector,fecha);
+        } else {
+            int nuevoID = 1;
+            nuevaGuardia = new Guardia(nuevoID,personal, turno,sector,fecha );
+        }
+        db.agregarLineaAlFinal(rutaDB, nuevaGuardia);
     }
     
     public int encontrarUltimoIdTxt(String ruta_archivo) {
@@ -97,4 +115,7 @@ public class GestorController {
         }
         db.escribirTodoArchivo(ruta_archivo, lineasActualizadas);
     }
+    
+  
+
 }

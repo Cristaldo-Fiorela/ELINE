@@ -1,1 +1,2 @@
 40730032,Fiorela,Cristaldo,12345,correo@correo,A
+52230055,Daiana,Bobadilla,256355,daiana@gmail.com,test
