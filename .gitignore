@@ -23,6 +23,3 @@
 hs_err_pid*
 replay_pid*
 /eline/target/
-
-# Ignorar carpeta de base de datos Derby local
-/db/

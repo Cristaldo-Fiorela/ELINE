@@ -1,7 +1,6 @@
 package modelo.guardia;
 
 /*
-
     tipo de dato emmet
     tener un txt con los datos cargados
     solo imprimir turno con datos emmet
