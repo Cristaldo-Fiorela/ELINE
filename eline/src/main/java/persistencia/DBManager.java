@@ -12,8 +12,9 @@ public class DBManager {
     public static final String RUTA_RAIZ = "data/";
 
     // nombre de archivos
-    public static final String TURNOS_FILE = "turnos.txt";
-    
+    public static final String TURNOS_FILE = "turnos.txt";    
+    public static final String ESPECIALIDADES_FILE = "especialidades.txt";
+
     // instancia singleton!!
     private static DBManager instancia;
 
