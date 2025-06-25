@@ -18,7 +18,6 @@ public class Persona {
     private  String telefono;
     private  String correo;    
     private int ID_Especialidad;
-    private String descripcion;
 
     public Persona() {
     }
@@ -30,7 +29,6 @@ public class Persona {
         this.telefono = telefono;
         this.correo = correo;
         this.ID_Especialidad = ID_Especialidad;
-        this.descripcion = descripcion;
     }
 
     public int getDNI() {
@@ -57,10 +55,6 @@ public class Persona {
         return ID_Especialidad;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
     public void setDNI(int DNI) {
         this.DNI = DNI;
     }
@@ -85,16 +79,4 @@ public class Persona {
         this.ID_Especialidad = ID_Especialidad;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-   
-    /*
-    @Override
-    public String toString() {
-        return  DNI + "," + nombre + "," + apellido + "," + telefono + "," + correo;
-    }
-    
-    */
 }

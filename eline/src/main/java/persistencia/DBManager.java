@@ -46,7 +46,7 @@ public class DBManager {
     }
     
     public String getRutaCompleta(String nombre_archivo) {
-        return RUTA_RAIZ + TURNOS_FILE;
+        return RUTA_RAIZ + nombre_archivo;
     }
     
     public boolean existeArchivo(String nombre_archivo) {
