@@ -2,6 +2,8 @@
 package controller;
 
 import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import modelo.persona.Especialidad;
 import persistencia.DBManager;
 
@@ -42,6 +44,50 @@ public class GestorController {
         return -1;
     }
 
+    public void listarDatosTabla(JTable nombre_var_tabla, String[] columnasACrear, String ruta_archivo) {
+        String[] columnas = columnasACrear;
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+        
+        try {
+            List<String> todasLasLineas = db.leerTodasLinesArchivo(ruta_archivo);
+            
+            for (String linea : todasLasLineas) {
+                if(linea != null && !linea.trim().isEmpty()) {
+                    String[] partes = linea.split(",");
+                    
+                    // tiene que haber en cada linea la misma cantidad de datos que columnas
+                    if(partes.length >= columnas.length) {
+                        Object[] fila = new Object[columnas.length];
+                        for (int i = 0; i < columnas.length; i++) {
+                            fila[i] = partes[i].trim();
+                        }
+                        
+                        modelo.addRow(fila);
+                    }
+                }
+            }
+            nombre_var_tabla.setModel(modelo);
+        } catch (Exception e) {
+            System.out.println("Error al cargar datos: " + e.getMessage());
+            nombre_var_tabla.setModel(modelo); // tabla vacia
+        }
+        
+    }
+    
+    public void eliminarElemento(String ruta_archivo, int id) {
+        List<String> lineas = db.leerTodasLinesArchivo(ruta_archivo);
+        
+        for (String linea : lineas) {
+            if(linea != null && !linea.trim().isEmpty()) {
+                String[] partes = linea.split(",");
+                if(Integer.parseInt(partes[0]) == id) {
+                    System.out.println("hola");
+                }
+                
+            }
+        }
+    }
+    
     
     /*
     private final EspecialidadService servicio = new EspecialidadService();

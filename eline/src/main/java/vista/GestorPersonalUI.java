@@ -73,7 +73,7 @@ public class GestorPersonalUI extends javax.swing.JFrame {
         btnGuardarEspecialidad = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbEspecialidad = new javax.swing.JTable();
         jPanel12 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
@@ -310,7 +310,7 @@ public class GestorPersonalUI extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbEspecialidad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -329,9 +329,9 @@ public class GestorPersonalUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane1.setViewportView(tbEspecialidad);
+        if (tbEspecialidad.getColumnModel().getColumnCount() > 0) {
+            tbEspecialidad.getColumnModel().getColumn(1).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -733,7 +733,7 @@ public class GestorPersonalUI extends javax.swing.JFrame {
         Date mFecha = formGuardiaFecha.getDate(); // obtiene fecha actual del sistema
         long fecha = mFecha.getTime(); // toma la parte del tiempo (hora) de la fecha y la convierte a long (timestamp)
         java.sql.Date fecha_sql = new java.sql.Date(fecha); // fecha formateada correctamente para DB
-                
+        
     }//GEN-LAST:event_btnGuardarGuardiaActionPerformed
 
     private void btnGuardarEspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEspecialidadActionPerformed
@@ -765,16 +765,7 @@ public class GestorPersonalUI extends javax.swing.JFrame {
 
     private void listarEspecialidades(){ //listar especialidades en la tabla 
         String[] columnas = {"ID","Especialidad"};
-        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
-        
-        /*
-        List<Especialidad> especialidades = especialidadController.listarTodos();
-        for (Especialidad esp : especialidades) {
-            Object[] fila = {esp.getID_Especialidad(),esp.getDescripcion()};
-            modelo.addRow(fila);
-        }
-        */
-        jTable1.setModel(modelo); 
+        controlador.listarDatosTabla(tbEspecialidad, columnas, DBManager.ESPECIALIDADES_FILE);
     }
     
     public void listarEspecialidadesEnCombo(String nombreArchivo){ //lista lo que esta en el txt de especialidad en el combo
@@ -897,7 +888,6 @@ public class GestorPersonalUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
@@ -908,6 +898,7 @@ public class GestorPersonalUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTable tbEspecialidad;
     private javax.swing.JTextField txtNuevaEspecilidad;
     // End of variables declaration//GEN-END:variables
 }
