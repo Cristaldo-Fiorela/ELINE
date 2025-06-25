@@ -819,6 +819,7 @@ public class GestorPersonalUI extends javax.swing.JFrame {
         txtTelefonoPersonal.setText("");
         txtCorreoPersonal.setText("");
         listarGuardias();
+        cargarPersonalDBCombo();
     }//GEN-LAST:event_btnGuardarPersonalActionPerformed
 
     private void btnBorrarGuardiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarGuardiaActionPerformed
@@ -847,8 +848,6 @@ public class GestorPersonalUI extends javax.swing.JFrame {
         String[] columnas = {"ID","Personal","Turno","Sector","Fecha"};
         controlador.listarDatosTabla(tbGuardias, columnas, DBManager.GUARDIAS_FILE);
     }
-    
-
     
     public void cargarEspecialidadesDBCombo() {
          try {
