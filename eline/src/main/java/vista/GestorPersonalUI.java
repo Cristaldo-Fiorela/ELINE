@@ -4,7 +4,7 @@
  */
 package vista;
 
-import controller.EspecialidadController;
+import controller.GestorController;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class GestorPersonalUI extends javax.swing.JFrame {
     
-    EspecialidadController especialidadController = new EspecialidadController();
+    GestorController especialidadController = new GestorController();
 
     /**
      * Creates new form gestorPersonal

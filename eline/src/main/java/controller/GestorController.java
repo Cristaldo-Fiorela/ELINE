@@ -4,7 +4,7 @@ package controller;
 import servicios.EspecialidadService;
 
 
-public class EspecialidadController {
+public class GestorController {
   private final EspecialidadService servicio =new EspecialidadService();
   
   /*
