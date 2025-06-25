@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.persona.Especialidad;
+import modelo.persona.Persona;
 import persistencia.DBManager;
 
 public class GestorController {
@@ -26,6 +27,12 @@ public class GestorController {
         }
         
         db.agregarLineaAlFinal(rutaDB, nuevaEspecialidad);
+    }
+    
+    public void guardarNuevoPersonal(String DNI, String nombre, String apellido,String telefono, String correo, String especialidad) { 
+        String rutaDB = DBManager.PERSONAL_FILE;
+        Persona nuevaPersona = new Persona(DNI, nombre, apellido, telefono, correo, especialidad);        
+        db.agregarLineaAlFinal(rutaDB, nuevaPersona);
     }
     
     public int encontrarUltimoIdTxt(String ruta_archivo) {
@@ -89,5 +96,5 @@ public class GestorController {
             lineasActualizadas.add(linea); // las demas lineas las escribimos de nuevo
         }
         db.escribirTodoArchivo(ruta_archivo, lineasActualizadas);
-    }    
+    }
 }

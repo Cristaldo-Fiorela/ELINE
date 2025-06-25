@@ -12,26 +12,26 @@ package modelo.persona;
 */
 
 public class Persona {
-    private  int DNI;
+    private  String DNI;
     private  String nombre;
     private  String apellido;
     private  String telefono;
     private  String correo;    
-    private int ID_Especialidad;
+    private  String especialidad;
 
     public Persona() {
     }
 
-    public Persona(int DNI, String nombre, String apellido, String telefono, String correo, int ID_Especialidad, String descripcion) {
+    public Persona(String DNI, String nombre, String apellido, String telefono, String correo, String ID_Especialidad) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.correo = correo;
-        this.ID_Especialidad = ID_Especialidad;
+        this.especialidad = ID_Especialidad;
     }
 
-    public int getDNI() {
+    public String getDNI() {
         return DNI;
     }
 
@@ -51,11 +51,11 @@ public class Persona {
         return correo;
     }
 
-    public int getID_Especialidad() {
-        return ID_Especialidad;
+    public String getEspecialidad() {
+        return especialidad;
     }
 
-    public void setDNI(int DNI) {
+    public void setDNI(String DNI) {
         this.DNI = DNI;
     }
 
@@ -75,8 +75,13 @@ public class Persona {
         this.correo = correo;
     }
 
-    public void setID_Especialidad(int ID_Especialidad) {
-        this.ID_Especialidad = ID_Especialidad;
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
     }
 
+    @Override
+    public String toString() {
+        return DNI + "," + nombre + "," + apellido + "," + telefono + "," + correo + "," + especialidad;
+    }
+    
 }

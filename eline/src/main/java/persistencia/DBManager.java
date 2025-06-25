@@ -1,6 +1,5 @@
 package persistencia;
 
-import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.nio.file.Files;
@@ -19,6 +18,7 @@ public class DBManager {
     // nombre de archivos
     public static final String TURNOS_FILE = "turnos.txt";    
     public static final String ESPECIALIDADES_FILE = "especialidades.txt";
+    public static final String PERSONAL_FILE = "personal.txt";
 
     // instancia singleton!!
     private static DBManager instancia;
