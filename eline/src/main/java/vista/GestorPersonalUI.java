@@ -800,7 +800,6 @@ public class GestorPersonalUI extends javax.swing.JFrame {
             if(DB.existeArchivo(DBManager.TURNOS_FILE)) {
                 List<String> lineas = DB.leerTodasLinesArchivo(DBManager.TURNOS_FILE);
                 for (String linea : lineas) {
-                    System.out.println(linea);
                    Turno turno = parsearLineaTurno(linea);
                     // si hay algo en la linea
                     if (turno != null) {
