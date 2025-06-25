@@ -105,8 +105,8 @@ public class GestorPersonalUI extends javax.swing.JFrame {
         jPanel18 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        txtIDGuardia = new javax.swing.JTextField();
+        btnBorrarGuardia = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -609,7 +609,18 @@ public class GestorPersonalUI extends javax.swing.JFrame {
 
         jLabel22.setText("ID:");
 
-        jButton4.setText("BORRAR");
+        txtIDGuardia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDGuardiaActionPerformed(evt);
+            }
+        });
+
+        btnBorrarGuardia.setText("BORRAR");
+        btnBorrarGuardia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarGuardiaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -621,9 +632,9 @@ public class GestorPersonalUI extends javax.swing.JFrame {
                     .addGroup(jPanel18Layout.createSequentialGroup()
                         .addComponent(jLabel22)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIDGuardia, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnBorrarGuardia, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -635,8 +646,8 @@ public class GestorPersonalUI extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(txtIDGuardia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBorrarGuardia))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -728,8 +739,7 @@ public class GestorPersonalUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al guardar la guardia:\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
-      
-        
+        listarGuardias();
     }//GEN-LAST:event_btnGuardarGuardiaActionPerformed
 
     private void btnGuardarEspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEspecialidadActionPerformed
@@ -799,7 +809,19 @@ public class GestorPersonalUI extends javax.swing.JFrame {
         txtApellidoPersonal.setText("");
         txtTelefonoPersonal.setText("");
         txtCorreoPersonal.setText("");
+        listarGuardias();
     }//GEN-LAST:event_btnGuardarPersonalActionPerformed
+
+    private void btnBorrarGuardiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarGuardiaActionPerformed
+        // TODO add your handling code here:
+        int ID = Integer.parseInt(txtIDGuardia.getText());
+        controlador.eliminarElemento(DBManager.GUARDIAS_FILE, ID);
+        listarGuardias();
+    }//GEN-LAST:event_btnBorrarGuardiaActionPerformed
+
+    private void txtIDGuardiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDGuardiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDGuardiaActionPerformed
 
     private void listarEspecialidades(){ //listar especialidades en la tabla 
         String[] columnas = {"ID","Especialidad"};
@@ -951,6 +973,7 @@ public class GestorPersonalUI extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrarEspecialidad;
+    private javax.swing.JButton btnBorrarGuardia;
     private javax.swing.JButton btnGuardarEspecialidad;
     private javax.swing.JButton btnGuardarGuardia;
     private javax.swing.JButton btnGuardarPersonal;
@@ -959,7 +982,6 @@ public class GestorPersonalUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboSector;
     private javax.swing.JComboBox<String> comboTurno;
     private com.toedter.calendar.JDateChooser formGuardiaFecha;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1000,13 +1022,13 @@ public class GestorPersonalUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTable tbEspecialidad;
     private javax.swing.JTable tbGuardias;
     private javax.swing.JTextField txtApellidoPersonal;
     private javax.swing.JTextField txtCorreoPersonal;
     private javax.swing.JTextField txtDNIpersonal;
     private javax.swing.JTextField txtIDEspecialidad;
+    private javax.swing.JTextField txtIDGuardia;
     private javax.swing.JTextField txtNombrePersonal;
     private javax.swing.JTextField txtNuevaEspecilidad;
     private javax.swing.JTextField txtTelefonoPersonal;

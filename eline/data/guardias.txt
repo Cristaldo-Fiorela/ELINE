@@ -1,1 +1,2 @@
 1,Daiana Bobadilla (52230055),tarde (14 a 22 hrs),Hospital Favaloro (Av. Eva Perón),2025-06-20
+2,Fiorela Cristaldo (40730032),tarde (14 a 22 hrs),Hospital Baliña (Av. Lavalle),2025-06-20
