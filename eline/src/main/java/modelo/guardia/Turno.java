@@ -12,16 +12,16 @@ package modelo.guardia;
 
 public class Turno {
     private int id_turno;
-    private String descripcion_turno;
+    private TipoTurno tipo_turno;
     private int hora_inicio;
     private int hora_salida;
 
     public Turno() {
     }
 
-    public Turno(int id_turno, String descripcion_turno, int hora_inicio, int hora_salida) {
+    public Turno(int id_turno, TipoTurno tipo_turno, int hora_inicio, int hora_salida) {
         this.id_turno = id_turno;
-        this.descripcion_turno = descripcion_turno;
+        this.tipo_turno = tipo_turno;
         this.hora_inicio = hora_inicio;
         this.hora_salida = hora_salida;
     }
@@ -30,8 +30,8 @@ public class Turno {
         return id_turno;
     }
 
-    public String getDescripcion_turno() {
-        return descripcion_turno;
+    public TipoTurno getTipo_turno() {
+        return tipo_turno;
     }
 
     public int getHora_inicio() {
@@ -46,8 +46,8 @@ public class Turno {
         this.id_turno = id_turno;
     }
 
-    public void setDescripcion_turno(String descripcion_turno) {
-        this.descripcion_turno = descripcion_turno;
+    public void setTipo_turno(TipoTurno tipo_turno) {
+        this.tipo_turno = tipo_turno;
     }
 
     public void setHora_inicio(int hora_inicio) {
@@ -57,6 +57,4 @@ public class Turno {
     public void setHora_salida(int hora_salida) {
         this.hora_salida = hora_salida;
     }
-
-    
 }
