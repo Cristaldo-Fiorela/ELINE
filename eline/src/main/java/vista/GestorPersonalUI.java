@@ -22,7 +22,7 @@ import persistencia.DBManager;
  */
 public class GestorPersonalUI extends javax.swing.JFrame {
     
-    GestorController especialidadController = new GestorController();
+    GestorController controlador = new GestorController();
 
     /**
      * Creates new form gestorPersonal
@@ -69,8 +69,8 @@ public class GestorPersonalUI extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtNuevaEspecilidad = new javax.swing.JTextField();
+        btnGuardarEspecialidad = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -277,10 +277,10 @@ public class GestorPersonalUI extends javax.swing.JFrame {
 
         jLabel3.setText("Nombre: ");
 
-        jButton1.setText("GUARDAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardarEspecialidad.setText("GUARDAR");
+        btnGuardarEspecialidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGuardarEspecialidadActionPerformed(evt);
             }
         });
 
@@ -291,11 +291,11 @@ public class GestorPersonalUI extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGuardarEspecialidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6)))
+                        .addComponent(txtNuevaEspecilidad)))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -304,9 +304,9 @@ public class GestorPersonalUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNuevaEspecilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btnGuardarEspecialidad)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -736,25 +736,24 @@ public class GestorPersonalUI extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_btnGuardarGuardiaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String nombre=jTextField6.getText();
+    private void btnGuardarEspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEspecialidadActionPerformed
+        String nombre = txtNuevaEspecilidad.getText();
         
-        
-            if (nombre.isEmpty()) {
+        if (nombre.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Completa todos los campos.");
             return;
         }
          try {
-            // especialidadController.guardarEspecialidad(nombre);
-            //JOptionPane.showMessageDialog(this, "Especialidad agregada correctamente."); // Mensaje de éxito
+            controlador.guardarNuevaEspecialidad(nombre);
+            JOptionPane.showMessageDialog(this, "Especialidad agregada correctamente."); // Mensaje de éxito
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al guardar la especialidad: " + e.getMessage());
         }
         
-        jTextField6.setText("");
-        listarEspecialidades();
+        txtNuevaEspecilidad.setText("");
+        //listarEspecialidades();
      
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnGuardarEspecialidadActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
@@ -846,12 +845,12 @@ public class GestorPersonalUI extends javax.swing.JFrame {
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGuardarEspecialidad;
     private javax.swing.JButton btnGuardarGuardia;
     private java.awt.Choice choice2;
     private java.awt.Choice choice4;
     private javax.swing.JComboBox<String> comboTurno;
     private com.toedter.calendar.JDateChooser formGuardiaFecha;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -907,9 +906,9 @@ public class GestorPersonalUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txtNuevaEspecilidad;
     // End of variables declaration//GEN-END:variables
 }

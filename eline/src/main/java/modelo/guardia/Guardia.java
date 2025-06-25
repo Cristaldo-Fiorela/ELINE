@@ -51,17 +51,6 @@ public class Guardia {
         this.id_turno = id_turno;
     }
 
-    
-    
-    /*
-    //aca iria como en la tabla y el txt
-    @Override
-    public String toString() {
-        return  id_guardia + "," + persona + "," + sector + "," + turno + "," + ambulancia + "," + fecha_turno;
-    }
-    
-    */
-
     public int getId_guardia() {
         return id_guardia;
     }
@@ -81,6 +70,13 @@ public class Guardia {
     public int getId_turno() {
         return id_turno;
     }
+    
+    /*
+    //aca iria como en la tabla y el txt
+    @Override
+    public String toString() {
+        return  id_guardia + "," + persona + "," + sector + "," + turno + "," + ambulancia + "," + fecha_turno;
+    }
+    */
 
- 
 }

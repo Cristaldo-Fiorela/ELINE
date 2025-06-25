@@ -1,5 +1,8 @@
 package persistencia;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -59,10 +62,21 @@ public class DBManager {
         try {
             return Files.readAllLines(Paths.get(getRutaCompleta(nombre_archivo)));
         } catch (Exception e) {
-            System.out.println(RUTA_RAIZ + nombre_archivo + "soy de leer todas las lineas");
             System.err.println("Error al leer archivo: " + e.getMessage());
             // Devuelve lista vacía en caso de error
             return new ArrayList<>(); 
         }
     }
+        
+    public void agregarLineaAlFinal(String ruta_archivo, Object linea) {
+        try (
+                FileWriter fw = new FileWriter(getRutaCompleta(ruta_archivo), true);
+                PrintWriter pw = new PrintWriter(fw)
+            ) {   
+            pw.println(linea);
+        } catch (Exception e) {
+            System.err.println("Error al escribir en el archivo: " + e.getMessage());
+        }
+    }
+
 }

@@ -28,10 +28,10 @@ public class Especialidad {
         this.nombre = nombre;
     }
     
-    // se sobreescribe el metodo de Java por defecto para mostrar de manera correcta en el combobox de JFrame solo los nombres de las especialidades
+    // se sobreescribe el metodo de Java por defecto para mostrar los atributos que nos interesan
     @Override
     public String toString() {
-        return nombre;
+        return ID_especialidad + "," + nombre;
     }
     
 }
