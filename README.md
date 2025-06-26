@@ -7,6 +7,7 @@ E!Line es un sistema de gestión de emergencias desarrollado como prototipo para
 E!Line surge como respuesta a la problemática del sistema de gestión de emergencias actual que no cubre todas las necesidades y dificulta la comunicación entre el personal de hospital y el 911. El sistema cuenta con gran potencial para continuar creciendo e incluso llegar a ser financiado.
 
 Este proyecto fue desarrollado durante 2024 como parte de la materia de Emprendedurismo, enfocándose en crear un prototipo funcional que aborde las necesidades básicas de gestión de personal y registro de guardias.
+Este 2025 llevamos el proyecto a codigo de la mano de **Programacion Orientada a Objetos**
 
 ## 🚀 Características Principales
 
